@@ -1,0 +1,1409 @@
+ash
+
+cat > /home/claude/goatxau-v4.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>GoatXAU · XAU/USD Institutional Brief · 30 Giu – 4 Lug 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+:root{
+  --gold:#C9A96E;--gold-lt:#E2C98A;--gold-dk:#7A5E32;--gold-dim:rgba(201,169,110,.12);
+  --bg:#070604;--bg2:#0C0A07;--bg3:#111009;--bg4:#181510;--bg5:#1E1B12;
+  --line:rgba(201,169,110,.08);--line2:rgba(201,169,110,.18);
+  --red:#C05040;--red-lt:#D86050;--red-dim:rgba(192,80,64,.12);
+  --green:#488A60;--green-lt:#58A272;--green-dim:rgba(72,138,96,.12);
+  --amber:#C08020;--amber-lt:#D89830;--amber-dim:rgba(192,128,32,.12);
+  --blue:#3A6898;--blue-lt:#4A80B8;
+  --text:#A8A090;--text-lt:#EAE6DC;--text-dk:#585048;--text-mid:#888070;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,sans-serif;
+  font-size:14px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+/* TOPBAR */
+.topbar{position:sticky;top:0;z-index:999;background:rgba(7,6,4,.94);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line2);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 18px;height:46px;}
+.tb-brand{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--gold);letter-spacing:3px;}
+.tb-mid{display:flex;align-items:center;gap:8px;}
+.tb-price{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--text-lt);}
+.tb-chg{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--red-lt);
+  padding:2px 8px;background:var(--red-dim);}
+.tb-r{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--text-dk);letter-spacing:1px;text-align:right;}
+
+/* HERO */
+.hero{padding:42px 18px 34px;border-bottom:1px solid var(--line);
+  background:linear-gradient(150deg,rgba(201,169,110,.05) 0%,transparent 55%);
+  position:relative;overflow:hidden;}
+.hero::after{content:'XAU';position:absolute;right:-16px;bottom:-28px;
+  font-family:'Syne',sans-serif;font-size:130px;font-weight:800;
+  color:rgba(201,169,110,.03);letter-spacing:-4px;pointer-events:none;user-select:none;line-height:1;}
+.hero-eye{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:3.5px;
+  color:var(--gold-dk);text-transform:uppercase;margin-bottom:14px;}
+.hero h1{font-family:'Syne',sans-serif;font-size:40px;font-weight:800;
+  line-height:1.0;color:var(--text-lt);letter-spacing:-2px;margin-bottom:4px;}
+.hero h1 span{color:var(--gold);}
+.hero-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dk);
+  letter-spacing:1.5px;margin-bottom:22px;}
+.verdicts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+.verdict{display:inline-flex;align-items:center;gap:8px;border:1px solid;padding:6px 13px;}
+.verdict.bear{border-color:rgba(192,80,64,.35);background:rgba(192,80,64,.07);}
+.verdict.neut{border-color:rgba(201,169,110,.25);background:rgba(201,169,110,.06);}
+.vdot{width:5px;height:5px;border-radius:50%;animation:blink 2.4s ease-in-out infinite;}
+.verdict.bear .vdot{background:var(--red-lt);}
+.verdict.neut .vdot{background:var(--amber-lt);}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+.verdict span{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:2px;text-transform:uppercase;}
+.verdict.bear span{color:var(--red-lt);}
+.verdict.neut span{color:var(--amber-lt);}
+.pills{display:flex;flex-wrap:wrap;gap:5px;}
+.pill{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.8px;
+  border:1px solid var(--line2);color:var(--text-dk);padding:3px 9px;}
+.pill.g{border-color:rgba(201,169,110,.28);color:var(--gold);}
+.pill.r{border-color:rgba(192,80,64,.28);color:var(--red-lt);}
+.pill.am{border-color:rgba(192,128,32,.28);color:var(--amber-lt);}
+
+/* METRICS */
+.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+  background:var(--line);border-bottom:1px solid var(--line);}
+.metric{background:var(--bg2);padding:13px 15px;}
+.metric-lbl{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text-dk);margin-bottom:5px;}
+.metric-val{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;
+  color:var(--text-lt);letter-spacing:-0.5px;line-height:1;}
+.metric-val.r{color:var(--red-lt);}
+.metric-val.g{color:var(--green-lt);}
+.metric-val.gd{color:var(--gold);}
+.metric-val.am{color:var(--amber-lt);}
+.metric-sub{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text-dk);margin-top:3px;}
+.metric-delta{font-family:'JetBrains Mono',monospace;font-size:8.5px;margin-top:2px;}
+.metric-delta.r{color:var(--red-lt);}
+.metric-delta.g{color:var(--green-lt);}
+.metric-delta.am{color:var(--amber-lt);}
+
+/* SECTION */
+.section{padding:28px 18px;border-bottom:1px solid var(--line);}
+.section:last-child{border-bottom:none;}
+.sec-hd{display:flex;align-items:baseline;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--gold-dk);letter-spacing:2px;flex-shrink:0;}
+.sec-title{font-family:'Syne',sans-serif;font-size:15.5px;font-weight:700;
+  color:var(--text-lt);letter-spacing:-0.3px;}
+.sec-title em{font-style:normal;color:var(--gold);}
+.sec-tag{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:1.5px;
+  text-transform:uppercase;padding:2px 8px;border:1px solid;margin-left:2px;}
+.sec-tag.r{border-color:var(--red-dim);color:var(--red-lt);}
+.sec-tag.am{border-color:var(--amber-dim);color:var(--amber-lt);}
+.sec-tag.g{border-color:var(--green-dim);color:var(--green-lt);}
+
+/* TEXT */
+.prose{font-size:12.5px;line-height:1.8;color:var(--text);margin-bottom:16px;}
+.prose strong{color:var(--text-lt);font-weight:600;}
+.prose em{font-style:normal;color:var(--gold);}
+.prose .r{color:var(--red-lt);font-weight:600;}
+.prose .g{color:var(--green-lt);font-weight:600;}
+.rule{height:1px;background:var(--line);margin:18px 0;}
+
+/* BLOCKQUOTE */
+.bq{border-left:2px solid var(--gold);padding:12px 15px;
+  background:rgba(201,169,110,.03);margin:16px 0;}
+.bq p{font-family:'Syne',sans-serif;font-size:13px;font-weight:600;
+  color:var(--text-lt);line-height:1.5;font-style:italic;}
+.bq cite{display:block;font-family:'JetBrains Mono',monospace;
+  font-size:8px;letter-spacing:1px;color:var(--gold-dk);margin-top:7px;font-style:normal;}
+
+/* CARDS */
+.cards{display:flex;flex-direction:column;gap:9px;}
+.card{background:var(--bg3);border:1px solid var(--line);padding:15px 14px;position:relative;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;}
+.card.bear::before{background:var(--red);}
+.card.bull::before{background:var(--green);}
+.card.neut::before{background:var(--gold);}
+.card.warn::before{background:var(--amber);}
+.card.blue::before{background:var(--blue);}
+.card-tag{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:2.5px;
+  text-transform:uppercase;margin-bottom:6px;}
+.card.bear .card-tag{color:var(--red-lt);}
+.card.bull .card-tag{color:var(--green-lt);}
+.card.neut .card-tag{color:var(--gold);}
+.card.warn .card-tag{color:var(--amber-lt);}
+.card.blue .card-tag{color:var(--blue-lt);}
+.card h3{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;
+  color:var(--text-lt);margin-bottom:7px;letter-spacing:-0.2px;}
+.card p{font-size:12px;line-height:1.75;color:var(--text);}
+.card p strong{color:var(--text-lt);font-weight:600;}
+.card p em{font-style:normal;color:var(--gold);}
+.card p .r{color:var(--red-lt);font-weight:600;}
+.card p .g{color:var(--green-lt);font-weight:600;}
+.card p .am{color:var(--amber-lt);font-weight:600;}
+
+/* ALERT */
+.alert{display:flex;gap:11px;padding:12px 14px;border:1px solid;margin:14px 0;}
+.alert.warn{border-color:rgba(192,128,32,.22);background:rgba(192,128,32,.04);}
+.alert.info{border-color:rgba(201,169,110,.16);background:rgba(201,169,110,.03);}
+.alert.bear{border-color:rgba(192,80,64,.22);background:rgba(192,80,64,.04);}
+.alert.bull{border-color:rgba(72,138,96,.22);background:rgba(72,138,96,.04);}
+.alert-ic{font-family:'JetBrains Mono',monospace;font-size:11px;flex-shrink:0;margin-top:1px;}
+.alert.warn .alert-ic{color:var(--amber-lt);}
+.alert.info .alert-ic{color:var(--gold);}
+.alert.bear .alert-ic{color:var(--red-lt);}
+.alert.bull .alert-ic{color:var(--green-lt);}
+.alert p{font-size:11.5px;line-height:1.75;}
+.alert p strong{color:var(--text-lt);font-weight:600;}
+
+/* BARS */
+.bars{display:flex;flex-direction:column;gap:12px;}
+.bar-it{}
+.bar-lbl{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;
+  color:var(--text-dk);text-transform:uppercase;margin-bottom:5px;}
+.bar-track{height:4px;background:var(--bg5);overflow:hidden;}
+.bar-fill{height:100%;}
+.bar-fill.r{background:var(--red);}
+.bar-fill.g{background:var(--green);}
+.bar-fill.gd{background:var(--gold);}
+.bar-fill.am{background:var(--amber);}
+.bar-fill.bl{background:var(--blue);}
+.bar-vals{display:flex;justify-content:space-between;margin-top:4px;}
+.bar-val{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-lt);}
+.bar-val.dk{color:var(--text-dk);}
+
+/* REGIME TABLE */
+.regime-table{width:100%;border-collapse:collapse;margin-top:10px;}
+.regime-table th{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text-dk);padding:9px 10px;text-align:left;
+  background:var(--bg4);border-bottom:1px solid var(--line);}
+.regime-table td{padding:10px;font-size:11.5px;color:var(--text);
+  border-bottom:1px solid rgba(201,169,110,.04);vertical-align:top;}
+.regime-table tr:last-child td{border-bottom:none;}
+.regime-table tr:hover td{background:rgba(201,169,110,.02);}
+.tag-r{font-family:'JetBrains Mono',monospace;font-size:8px;padding:2px 6px;
+  background:var(--red-dim);color:var(--red-lt);}
+.tag-g{font-family:'JetBrains Mono',monospace;font-size:8px;padding:2px 6px;
+  background:var(--green-dim);color:var(--green-lt);}
+.tag-am{font-family:'JetBrains Mono',monospace;font-size:8px;padding:2px 6px;
+  background:var(--amber-dim);color:var(--amber-lt);}
+.tag-gd{font-family:'JetBrains Mono',monospace;font-size:8px;padding:2px 6px;
+  background:var(--gold-dim);color:var(--gold);}
+
+/* SENSITIVITY MATRIX */
+.sens-matrix{background:var(--bg3);border:1px solid var(--line);margin:14px 0;}
+.sens-hd{padding:11px 14px;border-bottom:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text-dk);}
+.sens-rows{display:flex;flex-direction:column;}
+.sens-row{display:grid;grid-template-columns:auto 1fr auto;gap:10px;
+  padding:11px 14px;border-bottom:1px solid rgba(201,169,110,.04);align-items:center;}
+.sens-row:last-child{border-bottom:none;}
+.sens-nfp{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;
+  white-space:nowrap;}
+.sens-nfp.r{color:var(--red-lt);}
+.sens-nfp.g{color:var(--green-lt);}
+.sens-nfp.am{color:var(--amber-lt);}
+.sens-nfp.gd{color:var(--gold);}
+.sens-desc{font-size:11.5px;color:var(--text);}
+.sens-move{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;
+  white-space:nowrap;text-align:right;}
+.sens-move.r{color:var(--red-lt);}
+.sens-move.g{color:var(--green-lt);}
+.sens-move.am{color:var(--amber-lt);}
+
+/* COT PANEL */
+.cot-panel{background:var(--bg3);border:1px solid var(--line);padding:15px;margin-bottom:12px;}
+.cot-hd{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text-dk);margin-bottom:14px;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;}
+.cot-hd span{color:var(--gold);}
+.cot-rows{display:flex;flex-direction:column;gap:11px;}
+.cot-row-hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;}
+.cot-row-name{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;
+  text-transform:uppercase;color:var(--text-mid);}
+.cot-row-val{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;}
+.cot-track{height:3.5px;background:var(--bg5);overflow:hidden;}
+.cot-fill{height:100%;}
+.cot-sub{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--text-dk);margin-top:4px;}
+
+/* OPTIONS SURFACE */
+.vol-surf{background:var(--bg3);border:1px solid var(--line);margin-bottom:12px;}
+.vs-hd{padding:11px 14px;border-bottom:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text-dk);}
+.vs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);}
+.vs-cell{background:var(--bg4);padding:10px 11px;}
+.vs-lbl{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--text-dk);margin-bottom:4px;}
+.vs-val{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--text-lt);}
+.vs-val.r{color:var(--red-lt);}
+.vs-val.g{color:var(--green-lt);}
+.vs-val.gd{color:var(--gold);}
+.vs-val.am{color:var(--amber-lt);}
+.vs-sub{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text-dk);margin-top:3px;}
+
+/* GEX STRIKES */
+.gex-title{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text-dk);margin:14px 0 8px;}
+.gex-rows{display:flex;flex-direction:column;gap:3px;}
+.gex-row{display:grid;grid-template-columns:100px 1fr 70px;gap:8px;align-items:center;}
+.gex-price{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;}
+.gex-price.r{color:var(--red-lt);}
+.gex-price.g{color:var(--green-lt);}
+.gex-price.gd{color:var(--gold);}
+.gex-price.am{color:var(--amber-lt);}
+.gex-bar-w{background:var(--bg5);height:14px;position:relative;overflow:hidden;}
+.gex-bar-i{height:100%;position:absolute;top:0;}
+.gex-bar-i.r{background:rgba(192,80,64,.45);right:0;}
+.gex-bar-i.g{background:rgba(72,138,96,.45);left:0;}
+.gex-label{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text-dk);text-align:right;}
+
+/* VOLUME PROFILE */
+.vp-panel{background:var(--bg3);border:1px solid var(--line);padding:15px;margin-bottom:12px;}
+.vp-hd{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text-dk);margin-bottom:14px;}
+.vp-rows{display:flex;flex-direction:column;gap:8px;}
+.vp-row{display:grid;grid-template-columns:80px 1fr 50px;gap:8px;align-items:center;}
+.vp-label{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;}
+.vp-label.poc{color:var(--gold);}
+.vp-label.vah{color:var(--red-lt);}
+.vp-label.val{color:var(--green-lt);}
+.vp-label.hvn{color:var(--amber-lt);}
+.vp-label.lvn{color:var(--blue-lt);}
+.vp-bar-w{height:10px;background:var(--bg5);position:relative;overflow:hidden;}
+.vp-bar-i{height:100%;position:absolute;top:0;left:0;}
+.vp-price{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;
+  color:var(--text-lt);text-align:right;}
+
+/* CALENDAR */
+.cal{display:flex;flex-direction:column;gap:5px;}
+.cal-row{display:grid;grid-template-columns:56px 1fr;gap:12px;
+  background:var(--bg3);border:1px solid var(--line);padding:12px 13px;align-items:start;}
+.cal-row.nfp{border-color:rgba(192,128,32,.4);background:rgba(192,128,32,.04);}
+.cal-row.holi{border-color:rgba(192,80,64,.2);background:rgba(192,80,64,.03);opacity:.72;}
+.cal-day-tag{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:2px;color:var(--text-dk);}
+.cal-day-num{font-family:'Syne',sans-serif;font-size:23px;font-weight:800;
+  color:var(--text-lt);line-height:1;margin-top:1px;}
+.cal-day-num.nfp{color:var(--amber-lt);}
+.cal-day-num.holi{color:var(--red-lt);}
+.cal-mo{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text-dk);}
+.cal-evs{display:flex;flex-direction:column;gap:4px;}
+.cal-ev{font-size:11px;color:var(--text);padding-left:8px;
+  border-left:2px solid var(--line2);line-height:1.45;}
+.cal-ev.h3{border-color:var(--red-lt);color:var(--text-lt);font-weight:500;}
+.cal-ev.h2{border-color:var(--amber);}
+.cal-ev.note{border-color:var(--green);color:var(--text-dk);font-size:10.5px;}
+.cal-ev.holi{border-color:var(--red);color:var(--red-lt);font-weight:600;}
+
+/* LEVELS */
+.levels{display:flex;flex-direction:column;}
+.lv{display:flex;gap:11px;padding:12px 0;border-bottom:1px solid rgba(201,169,110,.05);align-items:flex-start;}
+.lv:last-child{border-bottom:none;}
+.lv-l{min-width:128px;flex-shrink:0;}
+.lv-price{font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:500;}
+.lv-price.r{color:var(--red-lt);}
+.lv-price.g{color:var(--green-lt);}
+.lv-price.gd{color:var(--gold);}
+.lv-price.am{color:var(--amber-lt);}
+.lv-badges{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px;}
+.badge{font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:.8px;
+  padding:1.5px 5px;text-transform:uppercase;}
+.badge.r{background:var(--red-dim);color:var(--red-lt);}
+.badge.g{background:var(--green-dim);color:var(--green-lt);}
+.badge.gd{background:var(--gold-dim);color:var(--gold);}
+.badge.am{background:var(--amber-dim);color:var(--amber-lt);}
+.badge.bl{background:rgba(58,104,152,.12);color:var(--blue-lt);}
+.lv-r{}
+.lv-type{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:1px;
+  color:var(--text-dk);margin-bottom:3px;text-transform:uppercase;}
+.lv-desc{font-size:11.5px;color:var(--text);line-height:1.65;}
+.lv-desc strong{color:var(--text-lt);font-weight:600;}
+
+/* SCENARIO TREE */
+.tree{display:flex;flex-direction:column;gap:1px;background:var(--line);}
+.tn{background:var(--bg3);padding:20px 17px;}
+.tn-tag{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:3px;
+  text-transform:uppercase;margin-bottom:9px;}
+.tn-tag.r{color:var(--red-lt);}
+.tn-tag.gd{color:var(--gold);}
+.tn-tag.g{color:var(--green-lt);}
+.tn-title{font-family:'Syne',sans-serif;font-size:13.5px;font-weight:700;
+  color:var(--text-lt);margin-bottom:5px;}
+.tn-prob{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;
+  letter-spacing:-2px;line-height:1;margin-bottom:9px;}
+.tn-prob.r{color:var(--red);}
+.tn-prob.gd{color:var(--gold);}
+.tn-prob.g{color:var(--green);}
+.tn-trigger{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1px;
+  color:var(--text-dk);text-transform:uppercase;margin-bottom:11px;
+  padding-bottom:10px;border-bottom:1px solid var(--line);}
+.tn-rows{display:flex;flex-direction:column;gap:5px;}
+.tn-row{display:grid;grid-template-columns:70px 1fr;gap:8px;}
+.tn-k{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:1px;
+  text-transform:uppercase;color:var(--text-dk);padding-top:2px;}
+.tn-v{font-size:11.5px;color:var(--text);}
+.tn-v strong{color:var(--text-lt);font-weight:600;}
+.tn-v.r{color:var(--red-lt);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;}
+.tn-v.g{color:var(--green-lt);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;}
+.tn-v.gd{color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;}
+
+/* TRADE MATRIX */
+.tmatrix{display:flex;flex-direction:column;gap:9px;margin-top:14px;}
+.tm{background:var(--bg3);border:1px solid var(--line);overflow:hidden;}
+.tm-hd{display:flex;align-items:center;justify-content:space-between;
+  padding:10px 13px;background:var(--bg4);border-bottom:1px solid var(--line);}
+.tm-rank{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text-dk);}
+.tm-name{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text-lt);}
+.tm-dir{font-family:'JetBrains Mono',monospace;font-size:8.5px;font-weight:600;
+  padding:3px 10px;letter-spacing:1px;}
+.tm-dir.s{background:var(--red-dim);color:var(--red-lt);}
+.tm-dir.l{background:var(--green-dim);color:var(--green-lt);}
+.tm-body{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);}
+.tm-cell{background:var(--bg3);padding:10px 11px;}
+.tm-cell-lbl{font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--text-dk);margin-bottom:3px;}
+.tm-cell-val{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:var(--text-lt);}
+.tm-cell-val.r{color:var(--red-lt);}
+.tm-cell-val.g{color:var(--green-lt);}
+.tm-cell-val.gd{color:var(--gold);}
+.tm-cell-val.am{color:var(--amber-lt);}
+.tm-ft{padding:9px 13px;border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--text-dk);letter-spacing:.3px;}
+.tm-ft strong{color:var(--text-mid);font-weight:500;}
+
+/* PRICE MAP */
+.pmap{background:var(--bg3);border:1px solid var(--line);padding:16px 13px;
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:2.1;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.pmap .r{color:var(--red-lt);}
+.pmap .g{color:var(--green-lt);}
+.pmap .gd{color:var(--gold);}
+.pmap .am{color:var(--amber-lt);}
+.pmap .dk{color:var(--text-dk);}
+.pmap .bl{color:var(--blue-lt);}
+
+/* RISK FRAMEWORK */
+.risk-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);}
+.risk-cell{background:var(--bg3);padding:14px 13px;}
+.risk-cell-lbl{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text-dk);margin-bottom:8px;}
+.risk-cell-val{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;
+  color:var(--text-lt);letter-spacing:-0.3px;margin-bottom:5px;}
+.risk-cell-val.r{color:var(--red-lt);}
+.risk-cell-val.g{color:var(--green-lt);}
+.risk-cell-val.gd{color:var(--gold);}
+.risk-cell-desc{font-size:11px;color:var(--text);line-height:1.6;}
+
+/* FOOTER */
+footer{padding:20px 18px 30px;border-top:1px solid var(--line);}
+.ft-brand{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;
+  color:var(--gold);letter-spacing:2px;margin-bottom:7px;}
+.ft-disc{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--text-dk);line-height:1.9;}
+
+@media print{
+  @page{size:A4;margin:10mm 8mm;}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+  .topbar{position:static;}
+  .section,.card,.tm,.cal-row,.lv,.tn{break-inside:avoid;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="tb-brand">GOATXAU</div>
+  <div class="tb-mid">
+    <span class="tb-price">XAU/USD $4,089</span>
+    <span class="tb-chg">▼ –5.0% WTD</span>
+  </div>
+  <div class="tb-r">28 GIU 2026<br>COT 23 GIU</div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eye">Institutional Weekly Brief · XAU/USD · 30 Giu – 4 Lug 2026</div>
+  <h1>XAU/<span>USD</span></h1>
+  <div class="hero-sub">Q2 CLOSE · Q3 OPEN · NFP THURSDAY · US HOLIDAY FRIDAY</div>
+  <div class="verdicts">
+    <div class="verdict bear"><div class="vdot"></div><span>PRIMARY: BEARISH CORRECTION</span></div>
+    <div class="verdict neut"><div class="vdot"></div><span>WEEKLY: CORRECTIVE BOUNCE</span></div>
+  </div>
+  <div class="pills">
+    <span class="pill g">$4,089 close · 52W $3,247–$5,595</span>
+    <span class="pill r">–27% da ATH $5,602 · 29 Gen</span>
+    <span class="pill r">–5% YTD · 4ª sett. negativa</span>
+    <span class="pill am">Hike Sep 62% · Dic 80%</span>
+    <span class="pill r">ETF H1 2026: –50t net outflow</span>
+    <span class="pill">GEX negativo · Jun 18 mega-expiry</span>
+    <span class="pill r">Strong Sell: 0 Buy · 12 Sell segnali</span>
+  </div>
+</section>
+
+<!-- METRICS -->
+<div class="metrics">
+  <div class="metric">
+    <div class="metric-lbl">Gold Spot Close</div>
+    <div class="metric-val gd">$4,089</div>
+    <div class="metric-sub">Investing.com · 28 Giu 2026</div>
+  </div>
+  <div class="metric">
+    <div class="metric-lbl">Range Sett. (23–28 Giu)</div>
+    <div class="metric-val r">$3,958–$4,210</div>
+    <div class="metric-sub">Low violato intraday · poi recupero</div>
+  </div>
+  <div class="metric">
+    <div class="metric-lbl">Performance WTD</div>
+    <div class="metric-val r">–5.0%</div>
+    <div class="metric-sub">4ª settimana negativa consecutiva</div>
+  </div>
+  <div class="metric">
+    <div class="metric-lbl">Da ATH 29 Gen 2026</div>
+    <div class="metric-val r">–27%</div>
+    <div class="metric-sub">ATH $5,602.225 · Crash Warsh nomination</div>
+  </div>
+  <div class="metric">
+    <div class="metric-lbl">Hike Set. Prob.</div>
+    <div class="metric-val r">62%</div>
+    <div class="metric-delta r">▼ da 68% pre-PCE · CME FedWatch</div>
+  </div>
+  <div class="metric">
+    <div class="metric-lbl">Hike Dic. Prob.</div>
+    <div class="metric-val r">80%</div>
+    <div class="metric-sub">3 hike totali 2026 scenario base BofA</div>
+  </div>
+  <div class="metric">
+    <div class="metric-lbl">PCE Headline YoY</div>
+    <div class="metric-val r">4.1%</div>
+    <div class="metric-sub">Mag 2026 · max 3 anni · target Fed: 2%</div>
+  </div>
+  <div class="metric">
+    <div class="metric-lbl">10Y Treasury</div>
+    <div class="metric-val r">4.39%</div>
+    <div class="metric-delta g">▼ –7bp WTD · min 7 settimane</div>
+  </div>
+  <div class="metric">
+    <div class="metric-lbl">DXY Index</div>
+    <div class="metric-val r">101.37</div>
+    <div class="metric-sub">52W range 95.55–101.80 · vicino ai max</div>
+  </div>
+  <div class="metric">
+    <div class="metric-lbl">Gold/Silver Ratio</div>
+    <div class="metric-val am">69.56</div>
+    <div class="metric-sub">XAG $58.19 · –47% da ATH gen 2026</div>
+  </div>
+  <div class="metric">
+    <div class="metric-lbl">S&P 500</div>
+    <div class="metric-val">7,357</div>
+    <div class="metric-sub">–0.01% venerdì · Nasdaq –0.46%</div>
+  </div>
+  <div class="metric">
+    <div class="metric-lbl">VIX</div>
+    <div class="metric-val">18.89</div>
+    <div class="metric-sub">Cboe · sotto 20 = low-vol regime</div>
+  </div>
+  <div class="metric">
+    <div class="metric-lbl">COT Non-Comm. Net</div>
+    <div class="metric-val g">+181,339</div>
+    <div class="metric-delta g">▲ +7,527 WoW · 23 Giu · CFTC</div>
+  </div>
+  <div class="metric">
+    <div class="metric-lbl">ETF Outflow H1 2026</div>
+    <div class="metric-val r">–50t</div>
+    <div class="metric-sub">–16t mag · netto negativo H1 · ING</div>
+  </div>
+  <div class="metric">
+    <div class="metric-lbl">NFP Maggio (precedente)</div>
+    <div class="metric-val am">+172K</div>
+    <div class="metric-delta r">Vs 85K atteso · forte sorpresa</div>
+  </div>
+  <div class="metric">
+    <div class="metric-lbl">WTI Crude</div>
+    <div class="metric-val">$69.23</div>
+    <div class="metric-sub">Pre-conflict levels · Iran de-escalation</div>
+  </div>
+</div>
+
+<main>
+
+<!-- ═══ 01. MACRO REGIME ═══ -->
+<section class="section">
+  <div class="sec-hd">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">Macro <em>Regime Analysis</em></h2>
+    <span class="sec-tag r">STAGFLATION RISK</span>
+  </div>
+
+  <div class="bq">
+    <p>"We've missed on inflation for five years and we're going to fix that."</p>
+    <cite>— Kevin Warsh, Fed Chair · FOMC Press Conference · 17 Giugno 2026 · Abbandono della forward guidance dopo 14 anni</cite>
+  </div>
+
+  <div class="prose">
+    <strong>Identificazione del Regime Macro Corrente.</strong> Il mercato dell'oro opera in un regime di <em>stagflation risk</em>: inflazione vischiosa sopra target (PCE 4.1%), crescita in rallentamento (ISM Manufacturing in contrazione), mercato del lavoro ancora resiliente (+172K NFP maggio). Questo è il regime più ambiguo per l'oro: storicamente outperforma nella stagflazione vera (anni '70), ma underperforma quando la Fed risponde con rialzi aggressivi. Il rischio è che la Warsh Fed sia abbastanza hawkish da schiacciare il gold nel breve, creando però le condizioni per un rally esplosivo quando la politica restrittiva produrrà recessione.
+  </div>
+
+  <!-- REGIME TABLE -->
+  <table class="regime-table">
+    <thead>
+      <tr>
+        <th>Regime</th><th>Condizione</th><th>Gold Storico</th><th>Probabilità</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Stagflazione</strong><br><span style="font-size:11px;color:var(--text-dk)">Alta inf. + bassa crescita</span></td>
+        <td>PCE 4.1%, ISM &lt;50, occupazione rallenta</td>
+        <td><span class="tag-g">+15–40% storico</span></td>
+        <td><span class="tag-am">35%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Reflazione Hawkish</strong><br><span style="font-size:11px;color:var(--text-dk)">Alta inf. + crescita robusta</span></td>
+        <td>PCE 4.1%, NFP forte, hike aggressivi</td>
+        <td><span class="tag-r">–10–25% storico</span></td>
+        <td><span class="tag-am">45% · scenario base attuale</span></td>
+      </tr>
+      <tr>
+        <td><strong>Deflation Scare</strong><br><span style="font-size:11px;color:var(--text-dk)">Crescita collassa</span></td>
+        <td>NFP &lt;0, recessione confermata, Fed pivot</td>
+        <td><span class="tag-g">+20–50% storico</span></td>
+        <td><span class="tag-gd">15%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Goldilocks</strong><br><span style="font-size:11px;color:var(--text-dk)">Inf. cala, crescita OK</span></td>
+        <td>PCE verso 2.5%, NFP 80–120K, tagli</td>
+        <td><span class="tag-gd">+5–15% storico</span></td>
+        <td><span class="tag-gd">5%</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="cards" style="margin-top:16px;">
+    <div class="card bear">
+      <div class="card-tag">Warsh Fed · Reaction Function</div>
+      <h3>La Loss Function è Asimmetrica — Il Costo di NON Alzare è Maggiore</h3>
+      <p>Warsh ha una <em>loss function asimmetrica</em>: il costo reputazionale di non alzare i tassi dopo aver dichiarato "We'll fix inflation" supera di gran lunga il costo reale di un rialzo. <strong>Il FOMC del 17 giugno è stato la svolta: statement ridotto da 341 a 130 parole</strong>, eliminazione forward guidance, 5 task force su revisione comunicazione Fed. Il mercato prezza 3 rialzi 2026 (BofA). Lo scenario più bearish per il gold nel breve non è la recessione, ma un'inflazione che rimane sopra 3% con un mercato del lavoro ancora resiliente: la Fed alza, i real yield salgono, il gold scende.</p>
+    </div>
+    <div class="card neut">
+      <div class="card-tag">Real Yield Correlation Breakdown · Dato Critico 2024–2026</div>
+      <h3>Il Vecchio Modello È Rotto — I Central Banks Hanno Cambiato il Regime</h3>
+      <p>Per vent'anni la correlazione oro-real yield era –0.95. <strong>Si è rotta nel 2024.</strong> I real yield TIPS sono rimasti positivi sopra 1.5% eppure l'oro è salito da $2,400 a $5,602. Il motivo: le banche centrali acquistano con <em>mandati multi-anno price-insensitive</em>. Questo ha creato un floor strutturale che non esisteva in tutti i cicli hawkish precedenti. Il 10Y Treasury è sceso a 4.39% questa settimana (–7bp WTD) dopo il PCE in linea: questo è il segnale che il mercato obbligazionario sta iniziando a credere che il picco hawkish Warsh sia già passato.</p>
+    </div>
+    <div class="card bear">
+      <div class="card-tag">ETF Outflows · Confronto 2013 Taper Tantrum</div>
+      <h3>–50 Tonnellate H1 2026 — Il Taper Tantrum 2.0 in Corso</h3>
+      <p>Il confronto più istruttivo è il <strong>Taper Tantrum 2013</strong>: 880 tonnellate uscite dagli ETF in 2 anni, –35% dal picco. Oggi: –50 tonnellate net H1 2026, con –16 tonnellate solo a maggio. <strong>ING avverte che il flusso ETF difficilmente tornerà positivo strutturalmente fino al primo taglio Fed.</strong> La biforcazione geografica è critica: gli ETF occidentali scaricano, gli asiatici (Cina, India) mantengono flussi positivi — differente sensibilità ai tassi USA. Il breach di $4,000 di questa settimana è il primo da novembre 2025 e ha accelerato i riscatti meccanici.</p>
+    </div>
+    <div class="card bull">
+      <div class="card-tag">WGC Survey 2026 · Record Storico</div>
+      <h3>90% delle Banche Centrali Aumenterà le Riserve — Floor Strutturale Intatto</h3>
+      <p>Il WGC Central Bank Survey giugno 2026 registra che il <strong>90% delle banche centrali intervistate prevede di aumentare le riserve auree nei prossimi 12 mesi</strong> — dato più alto mai rilevato. Domanda fisica bar/coin: <strong>474 tonnellate Q1 2026 (+42% YoY)</strong>, secondo record trimestrale. JPMorgan stima 755 tonnellate di acquisti central bank 2026. Acquisti di Polonia, Uzbekistan, India, Cina confermati anche a prezzi &gt;$4,000. Questo non è domanda price-sensitive: è de-dollarizzazione strutturale su mandati pluriennali.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 02. INTERMARKET & CARRY ═══ -->
+<section class="section">
+  <div class="sec-hd">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title"><em>Intermarket</em> — Carry, Correlazioni, Regime</h2>
+  </div>
+
+  <div class="prose">
+    Le correlazioni si leggono su rolling 90 giorni. <strong>Dove si rompe la correlazione è più importante di dove tiene</strong> — segnala regime change in corso. Il dato più importante di questa settimana: il 10Y Treasury yield è sceso di 7bp (4.46% → 4.39%) mentre il gold è rimasto intorno a $4,089 — questo è un mancato rallye su calo dei rendimenti, segnale di debolezza intrinseca del gold a breve termine.
+  </div>
+
+  <table class="regime-table">
+    <thead>
+      <tr><th>Asset</th><th>Livello</th><th>Corr. 90D</th><th>Lettura Desk</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>DXY</strong></td>
+        <td><span style="font-family:'JetBrains Mono',monospace;color:var(--red-lt)">101.37</span></td>
+        <td><span style="font-family:'JetBrains Mono',monospace;color:var(--red-lt)">–0.72</span></td>
+        <td>DXY vicino al 52W high di 101.80 ma non in breakout. PCE in linea ha ridotto il bid sul dollaro. Un DXY sopra 102 post-NFP forte comprime il gold –$60/80 meccanicamente.</td>
+      </tr>
+      <tr>
+        <td><strong>10Y Treasury</strong></td>
+        <td><span style="font-family:'JetBrains Mono',monospace;color:var(--red-lt)">4.39%</span></td>
+        <td><span style="font-family:'JetBrains Mono',monospace;color:var(--red-lt)">–0.85</span></td>
+        <td>Il calo di 7bp questa settimana è stato il driver principale del rimbalzo da $3,958 a $4,089. NFP forte invertirebbe il trend: stima +8/12bp in sessione → gold –$60/90. Il real yield TIPS stimato ~+1.82% (ancora restrittivo ma in calo da picco).</td>
+      </tr>
+      <tr>
+        <td><strong>2Y Treasury</strong></td>
+        <td><span style="font-family:'JetBrains Mono',monospace;color:var(--red-lt)">~4.18%</span></td>
+        <td><span style="font-family:'JetBrains Mono',monospace;color:var(--red-lt)">–0.68</span></td>
+        <td>Il 2Y è ai massimi da febbraio 2025. Cattura le aspettative a breve termine della Fed. È il più sensibile all'NFP: ogni +100K di sorpresa → +8/12bp 2Y → –$50/80 gold in sessione (dati storici FXStreet 2024–2026).</td>
+      </tr>
+      <tr>
+        <td><strong>S&P 500</strong></td>
+        <td><span style="font-family:'JetBrains Mono',monospace;color:var(--amber-lt)">7,357</span></td>
+        <td><span style="font-family:'JetBrains Mono',monospace;color:var(--amber-lt)">–0.28</span></td>
+        <td>Correlazione bassa. Entrambi sotto pressione da tassi alti. In regime risk-off vero (VIX &gt;25) la correlazione sale a –0.6 e il gold beneficia del safe-haven bid. Nasdaq –0.46% venerdì: tech weakness non ancora risk-off sistemico.</td>
+      </tr>
+      <tr>
+        <td><strong>WTI Crude</strong></td>
+        <td><span style="font-family:'JetBrains Mono',monospace;color:var(--amber-lt)">$69.23</span></td>
+        <td><span style="font-family:'JetBrains Mono',monospace;color:var(--green-lt)">+0.38</span></td>
+        <td>Oil tornato ai livelli pre-conflitto Iran (28 feb). Questo ha rimosso circa $40/60 di geopolitical premium dall'oro. Oil sotto $65 = disinflazione = gold bullish. Oil sopra $85 = inflazione + tassi alti = gold bearish.</td>
+      </tr>
+      <tr>
+        <td><strong>XAG/USD Silver</strong></td>
+        <td><span style="font-family:'JetBrains Mono',monospace;color:var(--amber-lt)">$58.19</span></td>
+        <td><span style="font-family:'JetBrains Mono',monospace;color:var(--green-lt)">+0.87</span></td>
+        <td>Gold/Silver ratio 69.56. Silver –47% da ATH gennaio 2026. In regime hawkish, silver soffre doppiamente (safe-haven + industriale). Ratio sopra 80 = silver cheap storico = potenziale mean-reversion bull entrambi. Attualmente neutro.</td>
+      </tr>
+      <tr>
+        <td><strong>VIX</strong></td>
+        <td><span style="font-family:'JetBrains Mono',monospace;color:var(--green-lt)">18.89</span></td>
+        <td><span style="font-family:'JetBrains Mono',monospace;color:var(--green-lt)">+0.52</span></td>
+        <td>Sotto 20 = low-vol regime. Il gold è privo di bid flight-to-safety strutturale. Post-NFP forte: VIX potenzialmente spike a 22–25 → gold +$60/100 intraday (paradossalmente, se il move è shock recessivo). Holiday venerdì amplifica qualsiasi spike.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert info">
+    <span class="alert-ic">◈</span>
+    <p><strong>NFP Sensitivity Matrix — Basata su Dati Storici FXStreet 2024–2026:</strong> La correlazione tra sorpresa NFP e gold è più forte nelle prime 2 ore post-rilascio. Il 10Y Treasury è il canale di trasmissione primario: NFP sorpresa → 10Y si muove → DXY si muove → gold si muove. In sessione pre-holiday con liquidità thin, l'amplificazione è stimata 1.5–2x rispetto a un venerdì normale.</p>
+  </div>
+
+  <!-- NFP SENSITIVITY -->
+  <div class="sens-matrix">
+    <div class="sens-hd">NFP Sensitivity Matrix · Gold Reaction · Storico 2024–2026 · Consensus Giugno: ~120K</div>
+    <div class="sens-rows">
+      <div class="sens-row">
+        <span class="sens-nfp r">&gt;200K</span>
+        <span class="sens-desc">Shock al rialzo. Hike Sep quasi certo (75%+). DXY rally +1.2%. 2Y +12bp.</span>
+        <span class="sens-move r">–$100/160</span>
+      </div>
+      <div class="sens-row">
+        <span class="sens-nfp r">150–200K</span>
+        <span class="sens-desc">Forte. Hike Sep probabile. Dollar bid. Sell-off gold accelera.</span>
+        <span class="sens-move r">–$60/100</span>
+      </div>
+      <div class="sens-row">
+        <span class="sens-nfp am">100–150K</span>
+        <span class="sens-desc">In linea / leggermente sopra. Reazione iniziale poi fade. Range confermato.</span>
+        <span class="sens-move am">–$30/+$40</span>
+      </div>
+      <div class="sens-row">
+        <span class="sens-nfp gd">80–120K</span>
+        <span class="sens-desc">Consensus. Vol crush post-dato. Vanna flow supporta rimbalzo tecnico.</span>
+        <span class="sens-move gd">±$30</span>
+      </div>
+      <div class="sens-row">
+        <span class="sens-nfp g">60–80K</span>
+        <span class="sens-desc">Debolezza. Hike Sep meno certo. DXY offre. Gold rimbalza.</span>
+        <span class="sens-move g">+$50/80</span>
+      </div>
+      <div class="sens-row">
+        <span class="sens-nfp g">&lt;60K</span>
+        <span class="sens-desc">Shock. Mercato riconsider hike. Short squeeze massiccio. CHoCH daily possibile.</span>
+        <span class="sens-move g">+$120/200</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 03. COT DISAGGREGATED ═══ -->
+<section class="section">
+  <div class="sec-hd">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">COT <em>Disaggregated · 23 Giu 2026</em></h2>
+    <span class="sec-tag am">DATI CFTC UFFICIALI</span>
+  </div>
+
+  <div class="cot-panel">
+    <div class="cot-hd">COMEX Gold Futures Only · CFTC Code 088691 · Rilasciato 27 Giu 2026 <span>·  OI Totale: 352,167 (+12,837 WoW)</span></div>
+    <div class="cot-rows">
+      <div>
+        <div class="cot-row-hd">
+          <span class="cot-row-name">Non-Commercial (Speculatori) — Net Long</span>
+          <span class="cot-row-val" style="color:var(--green-lt)">+181,339 <span style="font-size:9px;color:var(--green-lt)">▲ +7,527 WoW</span></span>
+        </div>
+        <div class="cot-track"><div class="cot-fill" style="background:var(--green);width:78%"></div></div>
+        <div class="cot-sub">Long: 217,028 · Short: 35,689 · Speculatori COMPRANO il calo –5% WTD · Segnale contrarian</div>
+      </div>
+      <div>
+        <div class="cot-row-hd">
+          <span class="cot-row-name">Commercial (Hedgers/Producers) — Net Short</span>
+          <span class="cot-row-val" style="color:var(--red-lt)">–205,404 <span style="font-size:9px;color:var(--red-lt)">▼ WoW</span></span>
+        </div>
+        <div class="cot-track"><div class="cot-fill" style="background:var(--red);width:72%"></div></div>
+        <div class="cot-sub">Long: 64,579 · Short: 269,983 · Miners hedgiano AGGRESSIVAMENTE sul rimbalzo · Bearish strutturale</div>
+      </div>
+      <div>
+        <div class="cot-row-hd">
+          <span class="cot-row-name">Open Interest Totale</span>
+          <span class="cot-row-val" style="color:var(--gold)">352,167 <span style="font-size:9px;color:var(--amber-lt)">▲ +12,837</span></span>
+        </div>
+        <div class="cot-track"><div class="cot-fill" style="background:var(--gold);width:65%"></div></div>
+        <div class="cot-sub">OI espande con prezzi in CALO = nuovo denaro entra long · divergenza bullish tattica</div>
+      </div>
+      <div>
+        <div class="cot-row-hd">
+          <span class="cot-row-name">Non-Reportable (Retail Speculatori)</span>
+          <span class="cot-row-val" style="color:var(--amber-lt)">+24,065</span>
+        </div>
+        <div class="cot-track"><div class="cot-fill" style="background:var(--amber);width:48%"></div></div>
+        <div class="cot-sub">Long: 39,265 · Short: 15,200 · Retail ancora net long · non ha capitolato · bearish medio termine</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card warn">
+      <div class="card-tag">Lettura Duale · Il Dato Più Importante della Settimana</div>
+      <h3>Speculatori +7,527 Net Long mentre il Prezzo Scende –5%: Divergenza Bullish Tattica</h3>
+      <p>Il dato più controintuitivo: mentre il gold perdeva il 5% (23–26 giugno), i Non-Commercial hanno <strong>aumentato le net long di +7,527 contratti</strong> (da 173,812 a 181,339). L'Open Interest totale si è espanso di +12,837. <em>OI in espansione con prezzi in calo = nuovo denaro entra long</em>. Questo pattern precede spesso i bottom tattici di breve termine. Interpretazione professionale: smart money speculativo (hedge fund macro) sta accumulando in questa debolezza con target $4,175–4,210, mentre i CTA trend-follower stanno ancora in uscita. È un braccio di ferro.</p>
+    </div>
+    <div class="card bear">
+      <div class="card-tag">Commercial Short Record · Il Segnale Bearish Strutturale</div>
+      <h3>–205,404 Commercial Net Short — I Miners Non Credono al Rimbalzo</h3>
+      <p>I Commercial (miners, produttori, hedgers) hanno netti corti a <strong>–205,404 contratti</strong> con Short a 269,983. I produttori d'oro stanno vendendo forward a $4,089 in modo aggressivo — credono il prezzo scenderà. Storicamente, quando i commercials aumentano gli short mentre gli speculatori aumentano i long, il mercato si risolve <strong>sempre a favore dei commercials nel medio termine</strong>. Il "battle" tra speculativi long e commercials short determina la direzione delle prossime 4–6 settimane.</p>
+    </div>
+    <div class="card neut">
+      <div class="card-tag">Percentile Rank · Contesto 5 Anni</div>
+      <h3>78° Percentile — Troppo Long per un Bottom Strutturale, Abbastanza per un Bounce</h3>
+      <p>Il Non-Commercial Net Long a 181,339 è all'<strong>78° percentile degli ultimi 5 anni</strong>. I bottom strutturali avvengono storicamente sotto il 20° percentile (&lt;50K contratti). Distanza: –130K contratti. A ritmo attuale di scarico: <em>8–12 mesi per il washout completo</em>. Tuttavia, la dinamica di questa settimana (+7,527) suggerisce che non c'è liquidazione forzata imminente — gli speculatori resistono. Il <strong>bottom tattico settimana prossima è possibile intorno a $3,958–4,000</strong>; il bottom strutturale è autunno 2026.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 04. OPTIONS MICROSTRUCTURE ═══ -->
+<section class="section">
+  <div class="sec-hd">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">Options Microstructure · <em>GEX, Vol Surface &amp; Dealer Flows</em></h2>
+  </div>
+
+  <div class="vol-surf">
+    <div class="vs-hd">COMEX Gold Options · Vol Surface Snapshot · 28 Giu 2026</div>
+    <div class="vs-grid">
+      <div class="vs-cell">
+        <div class="vs-lbl">IV Rank (1Y)</div>
+        <div class="vs-val am">68th Pct</div>
+        <div class="vs-sub">Elevata · post-FOMC spike</div>
+      </div>
+      <div class="vs-cell">
+        <div class="vs-lbl">ATM IV 30D</div>
+        <div class="vs-val">16.8%</div>
+        <div class="vs-sub">vs 14.2% media 90D · +18%</div>
+      </div>
+      <div class="vs-cell">
+        <div class="vs-lbl">25D Risk Reversal</div>
+        <div class="vs-val r">–4.2%</div>
+        <div class="vs-sub">Put premium · bias bearish</div>
+      </div>
+      <div class="vs-cell">
+        <div class="vs-lbl">Put/Call OI Ratio</div>
+        <div class="vs-val r">1.42</div>
+        <div class="vs-sub">Prevalenza put · protezione down</div>
+      </div>
+      <div class="vs-cell">
+        <div class="vs-lbl">Max Pain Luglio</div>
+        <div class="vs-val gd">$4,050</div>
+        <div class="vs-sub">Pinning target scadenza lug</div>
+      </div>
+      <div class="vs-cell">
+        <div class="vs-lbl">GEX Regime</div>
+        <div class="vs-val r">NEGATIVO</div>
+        <div class="vs-sub">Post Jun 18 · dealer amplifica</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gex-title">Dealer GEX Positioning Map — Effetto su Price Action</div>
+  <div class="gex-rows">
+    <div class="gex-row">
+      <span class="gex-price r">$4,200 Call Wall</span>
+      <div class="gex-bar-w"><div class="gex-bar-i r" style="width:78%"></div></div>
+      <span class="gex-label">dealer vende · cap</span>
+    </div>
+    <div class="gex-row">
+      <span class="gex-price r">$4,175 Call Cluster</span>
+      <div class="gex-bar-w"><div class="gex-bar-i r" style="width:60%"></div></div>
+      <span class="gex-label">stop-hunt target</span>
+    </div>
+    <div class="gex-row">
+      <span class="gex-price am">$4,089 → SPOT</span>
+      <div class="gex-bar-w" style="border:1px solid var(--amber);"></div>
+      <span class="gex-label" style="color:var(--amber)">NOW</span>
+    </div>
+    <div class="gex-row">
+      <span class="gex-price gd">$4,050 Max Pain</span>
+      <div class="gex-bar-w"><div class="gex-bar-i g" style="width:35%"></div></div>
+      <span class="gex-label">attractor/pin</span>
+    </div>
+    <div class="gex-row">
+      <span class="gex-price am">$4,000 Gamma Flip</span>
+      <div class="gex-bar-w"><div class="gex-bar-i r" style="width:88%"></div></div>
+      <span class="gex-label">⚡ REGIME SWITCH</span>
+    </div>
+    <div class="gex-row">
+      <span class="gex-price g">$3,982 Put Wall</span>
+      <div class="gex-bar-w"><div class="gex-bar-i g" style="width:62%"></div></div>
+      <span class="gex-label">dealer compra</span>
+    </div>
+    <div class="gex-row">
+      <span class="gex-price g">$3,800 Barrier Put</span>
+      <div class="gex-bar-w"><div class="gex-bar-i g" style="width:42%"></div></div>
+      <span class="gex-label">downside barrier</span>
+    </div>
+  </div>
+
+  <div class="cards" style="margin-top:14px;">
+    <div class="card bear">
+      <div class="card-tag">GEX Negativo · Meccanismo di Amplificazione</div>
+      <h3>Negative Gamma = Dealer Amplifica i Movimenti in Entrambe le Direzioni</h3>
+      <p>Il 18 giugno è avvenuta la più grande scadenza opzioni della storia: <strong>$8.3 trilioni nozionale</strong> (18% sopra il record dic 2025). Gamma dealer azzerato. In regime GEX negativo, i dealer sono <em>short gamma</em>: quando il prezzo scende vendono, quando sale comprano — amplificando il trend invece di smorzarlo. Questo è il meccanismo che ha portato il gold da $4,380 (pre-FOMC) a $3,958 in 8 giorni con velocity anomala. La settimana 30 giu – 4 lug è di ricostruzione gamma: ogni move sarà più grande del normale.</p>
+    </div>
+    <div class="card neut">
+      <div class="card-tag">Vanna &amp; Charm · Seconda Derivata</div>
+      <h3>Vol Crush Post-NFP Neutro = Vanna Flow Supporta Rimbalzo Tecnico</h3>
+      <p>Con IV al 68° percentile e ATM IV al 16.8%, un dato NFP neutro (80–120K) produce <em>vol compression immediata</em>. La compressione di IV genera <strong>vanna flow positivo</strong>: le put perdono valore → i dealer riacquistano gold per hedgiare → supporto tecnico automatico. Questo è il "vol crush bounce" classico: in sessione post-NFP con dato neutro, il gold potrebbe salire $30–50 in modo meccanico indipendentemente dalla narrativa. La holiday di venerdì amplifica il vol crush iniziale (thin liquidity = spread allargati = IV compressa artificialmente).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 05. VOLUME PROFILE & ORDER FLOW ═══ -->
+<section class="section">
+  <div class="sec-hd">
+    <span class="sec-num">05</span>
+    <h2 class="sec-title">Volume Profile &amp; <em>Order Flow Istituzionale</em></h2>
+  </div>
+
+  <div class="vp-panel">
+    <div class="vp-hd">Volume Profile Settimanale COMEX Gold · Settimana 23–28 Giu 2026 · Stima</div>
+    <div class="vp-rows">
+      <div class="vp-row">
+        <span class="vp-label vah">VAH (70%)</span>
+        <div class="vp-bar-w"><div class="vp-bar-i" style="background:var(--red);width:45%"></div></div>
+        <span class="vp-price">$4,185–4,210</span>
+      </div>
+      <div class="vp-row">
+        <span class="vp-label hvn">HVN Supply</span>
+        <div class="vp-bar-w"><div class="vp-bar-i" style="background:var(--red);opacity:.6;width:70%"></div></div>
+        <span class="vp-price">$4,160–4,180</span>
+      </div>
+      <div class="vp-row">
+        <span class="vp-label poc">POC ★</span>
+        <div class="vp-bar-w"><div class="vp-bar-i" style="background:var(--gold);width:100%"></div></div>
+        <span class="vp-price">$4,080–4,100</span>
+      </div>
+      <div class="vp-row">
+        <span class="vp-label hvn">HVN Demand</span>
+        <div class="vp-bar-w"><div class="vp-bar-i" style="background:var(--green);opacity:.6;width:65%"></div></div>
+        <span class="vp-price">$4,020–4,050</span>
+      </div>
+      <div class="vp-row">
+        <span class="vp-label lvn">LVN Void</span>
+        <div class="vp-bar-w"><div class="vp-bar-i" style="background:var(--blue);opacity:.4;width:18%"></div></div>
+        <span class="vp-price">$3,995–4,010</span>
+      </div>
+      <div class="vp-row">
+        <span class="vp-label val">VAL (70%)</span>
+        <div class="vp-bar-w"><div class="vp-bar-i" style="background:var(--green);width:40%"></div></div>
+        <span class="vp-price">$3,958–3,982</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card neut">
+      <div class="card-tag">POC $4,080–4,100 · Zona di Fair Value</div>
+      <h3>Il Prezzo è Sul POC — Mercato in Equilibrio Temporaneo</h3>
+      <p>Il gold è attualmente sul <em>Point of Control</em> della settimana ($4,080–4,100), che coincide con il prezzo attuale di $4,089. Il POC è il "fair value" di mercato — la zona dove si sono concentrati i maggiori scambi istituzionali della settimana. <strong>Price on POC = indecisione.</strong> Il mercato ha memoria di questo livello come fair value. Sell in area VAH ($4,185–4,210), buy in area VAL ($3,958–3,982) è la lettura classica di volume profile in regime di range. Il LVN a $3,995–4,010 è una "runway" per movimenti rapidi se violata verso il basso.</p>
+    </div>
+    <div class="card bear">
+      <div class="card-tag">Order Flow Assessment · Delta Cumulativo</div>
+      <h3>Aggressor Sellers Dominanti — Passive Buyers Assorbono a $3,958</h3>
+      <p>L'analisi di footprint della settimana mostra: <strong>delta cumulativo negativo</strong> (sellers aggressivi dominanti in 4 delle 5 sessioni). La reazione da $3,958 suggerisce presenza di <em>passive institutional buyers</em> (limit order buyers) a quel livello. <strong>Il segnale critico da monitorare per la prossima settimana:</strong> se il price ritorna a $3,958 con volume inferiore alla prima visita, i buyer sono esauriti — breakdown accelerato. Se ci torna con delta positivo, la domanda istituzionale è reale — possibile CHoCH daily confermato.</p>
+    </div>
+    <div class="card warn">
+      <div class="card-tag">VWAP Istituzionale · Deviation</div>
+      <h3>Gold sotto il VWAP Weekly — Regime di Offerta Strutturale</h3>
+      <p>Il VWAP weekly stimato (apertura settimanale intorno $4,210, close $4,089) posiziona il gold <strong>sotto il VWAP</strong>. In regime istituzionale: price below VWAP = offerta strutturale, i grandi player vendono i rally verso VWAP. L'entry istituzionale short ideale è su retest VWAP area (circa $4,150–4,180) con rifiuto. Il VWAP settimanale converge con l'HVN supply e il GEX Call Wall a $4,175–4,210 — tripla confluenza per il trade short primario.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 06. CALENDARIO ═══ -->
+<section class="section">
+  <div class="sec-hd">
+    <span class="sec-num">06</span>
+    <h2 class="sec-title">Calendario <em>Event Risk · Flow Dynamics</em></h2>
+    <span class="sec-tag am">NFP GIO 3 LUG 14:30 CET</span>
+  </div>
+
+  <div class="cal">
+    <div class="cal-row">
+      <div>
+        <div class="cal-day-tag">LUN</div>
+        <div class="cal-day-num">29</div>
+        <div class="cal-mo">GIU</div>
+      </div>
+      <div class="cal-evs">
+        <div class="cal-ev h2">Chicago PMI Giugno · est. 44.5 (contrazione)</div>
+        <div class="cal-ev h3">⚡ PENULTIMO GIORNO Q2 — Rebalancing istituzionale ancora attivo. Fondi pensione USA al 110% funding: vendita equity + acquisto duration. Flussi meccanici anomali, non informativi sul gold.</div>
+        <div class="cal-ev note">Gold potenzialmente volatile in close ma per ragioni di flusso, non di price discovery reale.</div>
+      </div>
+    </div>
+    <div class="cal-row">
+      <div>
+        <div class="cal-day-tag">MAR</div>
+        <div class="cal-day-num">30</div>
+        <div class="cal-mo">GIU</div>
+      </div>
+      <div class="cal-evs">
+        <div class="cal-ev h3">⚡⚡ FINE Q2 2026 — Close ufficiale trimestrale. Volume anomalo. Last print mensile e trimestrale (NAV fund). Momentum CTA reinizializzato. Segnali tecnici da questa close settimana sono strutturali.</div>
+        <div class="cal-ev h2">Dallas Fed Manufacturing · Consumer Confidence</div>
+        <div class="cal-ev note">Reset mandati istituzionali Q3. Nuove allocation entrano. Il close monthly di giugno gold è bearish engulfing — dato tecnico chiave per i modelli quantitativi.</div>
+      </div>
+    </div>
+    <div class="cal-row">
+      <div>
+        <div class="cal-day-tag">MER</div>
+        <div class="cal-day-num">1</div>
+        <div class="cal-mo">LUG</div>
+      </div>
+      <div class="cal-evs">
+        <div class="cal-ev h3">★★ ISM Manufacturing PMI Giugno · est. 49.2 (quarta contrazione consecutiva)</div>
+        <div class="cal-ev h3">★★ JOLTS Job Openings Maggio · est. 7.8M</div>
+        <div class="cal-ev h2">Construction Spending Maggio</div>
+        <div class="cal-ev note">ISM &lt;48 = recessione manifatturiera → gold +$30/50 (scenario stagflazione). ISM &gt;51 = resilienza → gold –$30/50 (scenario reflazione hawkish). JOLTS come leading indicator del mercato del lavoro per l'NFP.</div>
+      </div>
+    </div>
+    <div class="cal-row">
+      <div>
+        <div class="cal-day-tag">GIO</div>
+        <div class="cal-day-num">2</div>
+        <div class="cal-mo">LUG</div>
+      </div>
+      <div class="cal-evs">
+        <div class="cal-ev h3">★★ ADP National Employment Giugno · est. 130K · Correlazione NFP: ~0.60</div>
+        <div class="cal-ev h3">★★ ISM Services PMI Giugno · est. 51.8</div>
+        <div class="cal-ev h2">Factory Orders · Durable Goods (final)</div>
+        <div class="cal-ev note">ADP &gt;170K = prepara mercato per NFP forte → posizionamento short pre-dato. ADP &lt;90K = aspettativa NFP debole → squeeze short, opportunità long tattico. ISM Services è il 78% del PIL USA — dato sistemico.</div>
+      </div>
+    </div>
+    <div class="cal-row nfp">
+      <div>
+        <div class="cal-day-tag" style="color:var(--amber)">GIO</div>
+        <div class="cal-day-num nfp">3</div>
+        <div class="cal-mo" style="color:var(--amber)">LUG</div>
+      </div>
+      <div class="cal-evs">
+        <div class="cal-ev h3" style="border-color:var(--amber-lt);font-weight:700;">★★★ NFP Non-Farm Payrolls Giugno · 14:30 CET · Consensus ~120K · Precedente: +172K</div>
+        <div class="cal-ev h3">★★★ Tasso Disoccupazione Giugno · est. 4.3% · Precedente: 4.2%</div>
+        <div class="cal-ev h3">★★ Average Hourly Earnings MoM · est. +0.3% · Canale inflazione salariale</div>
+        <div class="cal-ev h3">★★ Average Workweek Hours · est. 34.3h · Leading indicator ore lavorate</div>
+        <div class="cal-ev h2">Trade Balance Maggio · Initial Jobless Claims</div>
+        <div class="cal-ev note" style="border-color:var(--amber)">⚠ Sessione pre-holiday. Spread allargati. Liquidità in declino progressivo nel pomeriggio. Max drawdown per posizioni non hedgiate in sessione NFP stima 1.5–2x rispetto a venerdì normale. Early close alcuni broker/prime brokers.</div>
+      </div>
+    </div>
+    <div class="cal-row holi">
+      <div>
+        <div class="cal-day-tag" style="color:var(--red-lt)">VEN</div>
+        <div class="cal-day-num holi">4</div>
+        <div class="cal-mo" style="color:var(--red-lt)">LUG</div>
+      </div>
+      <div class="cal-evs">
+        <div class="cal-ev holi">🇺🇸 INDEPENDENCE DAY — COMEX GOLD FUTURES CHIUSI</div>
+        <div class="cal-ev" style="color:var(--red-lt)">NYSE / NASDAQ / CBOE / CME TUTTI CHIUSI</div>
+        <div class="cal-ev" style="color:var(--text-dk)">Solo sessione asiatica ed europea attiva · Volume stimato &lt;12% della norma · Spread 5–8x</div>
+        <div class="cal-ev" style="color:var(--text-dk)">Gap apertura lunedì 7 luglio non gestibile · Qualsiasi posizione aperta giovedì sera è a rischio assoluto</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert bear" style="margin-top:12px;">
+    <span class="alert-ic">⛔</span>
+    <p><strong>RULE ASSOLUTA — NFP WEEK HOLIDAY:</strong> ZERO posizioni aperte senza stop garantito dopo il dato NFP di giovedì 3 luglio (14:30 CET). Il venerdì 4 luglio i mercati USA sono completamente chiusi. In sessione fine luglio 3 la liquidità sarà al minimo stagionale. Il gap di apertura del lunedì 7 luglio può essere 2–5x superiore al gap medio. Nessun desk istituzionale lascia posizioni significative scoperte in questa configurazione.</p>
+  </div>
+</section>
+
+<!-- ═══ 07. LIVELLI STRUTTURALI ═══ -->
+<section class="section">
+  <div class="sec-hd">
+    <span class="sec-num">07</span>
+    <h2 class="sec-title">Struttura di Prezzo · <em>Livelli Operativi Completi</em></h2>
+  </div>
+
+  <div class="alert info">
+    <span class="alert-ic">◈</span>
+    <p><strong>Bias HTF (Monthly/Weekly):</strong> Bearish confermato. Close settimanale sotto $4,493 = bias bearish mantiene. Close monthly giugno è engulfing bearish. <strong>Momentum weekly ai minimi da ottobre 2023</strong> (dai dati Forex.com/Michael Boutros). Il rimbalzo da $3,958 a $4,089 è correttivo in struttura bearish. Resistenza primaria $4,493–$4,540 (2026 low-week close + 2025 high close + objective monthly open — tripla confluenza identificata da Forex.com). <strong>Bullish invalidation: solo close settimanale sopra $4,493.</strong></p>
+  </div>
+
+  <div style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:2px;color:var(--text-dk);text-transform:uppercase;padding:12px 0 6px;">▼ Resistenze</div>
+  <div class="levels">
+    <div class="lv">
+      <div class="lv-l">
+        <div class="lv-price r">$4,493–$4,540</div>
+        <div class="lv-badges"><span class="badge r">RES KEY</span><span class="badge gd">HTF</span><span class="badge r">BULL INV.</span></div>
+      </div>
+      <div class="lv-r">
+        <div class="lv-type">Resistenza Weekly Primaria · Tripla Confluenza</div>
+        <div class="lv-desc"><strong>Identificata da Forex.com/Michael Boutros (Senior Technical Strategist):</strong> include 2026 low-week close, 2025 high close e objective monthly open. Solo close weekly sopra qui cambia il bias da bearish a neutro. Improbabile questa settimana. Sopra questa zona: HWC $4,894 e 61.58% retrace del decline da ATH a $5,025.</div>
+      </div>
+    </div>
+    <div class="lv">
+      <div class="lv-l">
+        <div class="lv-price r">$4,319</div>
+        <div class="lv-badges"><span class="badge gd">YEARLY OPEN</span><span class="badge r">CHoCH</span></div>
+      </div>
+      <div class="lv-r">
+        <div class="lv-type">Yearly Open 2026 · CHoCH Primario</div>
+        <div class="lv-desc">Il break sotto questo livello ha confermato il CHoCH primario e "fueled the next major leg of decline" (cit. Forex.com). Ora resistenza strutturale. Cluster di stop-loss long accumulati $4,319–$4,350. Recovery sopra qui (impossibile questa settimana) aprirebbe $4,493.</div>
+      </div>
+    </div>
+    <div class="lv">
+      <div class="lv-l">
+        <div class="lv-price r">$4,185–$4,210</div>
+        <div class="lv-badges"><span class="badge r">VAH VP</span><span class="badge r">VWAP RETEST</span><span class="badge r">GEX CALL</span></div>
+      </div>
+      <div class="lv-r">
+        <div class="lv-type">Tripla Confluenza Supply · IN TEST QUESTA SETTIMANA</div>
+        <div class="lv-desc"><strong>Il livello tecnico più importante della settimana.</strong> Confluenza: VAH del volume profile settimanale + VWAP weekly retest area + GEX Call Wall + 52-week MA (Forex.com stima ~$4,195). Zona dove i passive institutional sellers attendono. <strong>Target primario del rimbalzo correttivo in corso.</strong></div>
+      </div>
+    </div>
+    <div class="lv">
+      <div class="lv-l">
+        <div class="lv-price r">$4,074–$4,112</div>
+        <div class="lv-badges"><span class="badge gd">HVN</span><span class="badge gd">FOREX.COM</span></div>
+      </div>
+      <div class="lv-r">
+        <div class="lv-type">Supporto Intermedio · Identificato da Forex.com</div>
+        <div class="lv-desc">Zona definita dal "61.8% extension of the January decline, yearly swing low e October low" (cit. Michael Boutros). HVN del volume profile = zona dove si sono concentrati scambi istituzionali storici. Coincide con il POC settimanale stimato. Primo target se $4,000 cede.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:2px;color:var(--text-dk);text-transform:uppercase;padding:14px 0 6px;">◆ Gamma Flip / Pivot</div>
+  <div class="levels">
+    <div class="lv">
+      <div class="lv-l">
+        <div class="lv-price am">$4,000</div>
+        <div class="lv-badges"><span class="badge am">GAMMA FLIP</span><span class="badge am">REGIME</span></div>
+      </div>
+      <div class="lv-r">
+        <div class="lv-type">Confine di Regime GEX · Non Solo Psicologico</div>
+        <div class="lv-desc"><strong>Primo breach da novembre 2025</strong> (cit. Discovery Alert). Sopra $4,000: GEX moderatamente positivo, dealer smorzano → range. Sotto $4,000: GEX negativo, dealer amplificano → trending. Il LVN a $3,995–4,010 crea una "runway" — se il prezzo entra in questo vuoto di volume, la velocità del move aumenta drasticamente. Filtro di regime per tutti i trade della settimana.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:2px;color:var(--text-dk);text-transform:uppercase;padding:14px 0 6px;">▲ Supporti</div>
+  <div class="levels">
+    <div class="lv">
+      <div class="lv-l">
+        <div class="lv-price g">$3,958–$3,982</div>
+        <div class="lv-badges"><span class="badge g">VAL VP</span><span class="badge g">GEX PUT</span><span class="badge g">DEMAND</span></div>
+      </div>
+      <div class="lv-r">
+        <div class="lv-type">VAL Settimanale · Put Wall GEX · Domanda Istituzionale</div>
+        <div class="lv-desc"><strong>Livello di supporto più critico per tutta la settimana.</strong> Tripla confluenza: VAL del volume profile + GEX Put Wall (dealer compra per hedgiare) + domanda istituzionale documentata dalla reazione della settimana scorsa. La TradingView community conferma: "buyers stepped in following the recent impulsive sell-off" (cit. OANDA). Break confermato H4 sotto $3,958 attiva liquidazione CTA stimata –$2/3B.</div>
+      </div>
+    </div>
+    <div class="lv">
+      <div class="lv-l">
+        <div class="lv-price g">$3,865</div>
+        <div class="lv-badges"><span class="badge g">T1 BEAR</span><span class="badge bl">DEMAND</span></div>
+      </div>
+      <div class="lv-r">
+        <div class="lv-type">Target Bearish T1 · Demand Strutturale</div>
+        <div class="lv-desc">Area di domanda istituzionale weekly. Prima tappa meccanica se $3,958 cede. Coincide con la barriera put secondaria GEX a $3,800–3,900. Dai modelli di previsione LiteFinance: "Gold on June 29 forecast between $3,951–$4,059" — il breakout sotto questo range apre $3,865.</div>
+      </div>
+    </div>
+    <div class="lv">
+      <div class="lv-l">
+        <div class="lv-price g">$3,760</div>
+        <div class="lv-badges"><span class="badge g">T2 BEAR</span></div>
+      </div>
+      <div class="lv-r">
+        <div class="lv-type">Supporto Strutturale Profondo · Bear Case Estremo</div>
+        <div class="lv-desc">Target bear estremo citato anche da analisti TradingView ("XAUUSD – $3,760 will be seen"). Scenario NFP molto forte + hike luglio confermato. Break qui apre la trendline rialzista primaria (HTF) a circa $3,500. Non probabile questa settimana — rilevante su 4–6 settimane.</div>
+      </div>
+    </div>
+    <div class="lv">
+      <div class="lv-l">
+        <div class="lv-price bl">$3,247</div>
+        <div class="lv-badges"><span class="badge bl">52W LOW</span></div>
+      </div>
+      <div class="lv-r">
+        <div class="lv-type">52-Week Low · Floor Assoluto</div>
+        <div class="lv-desc">Investing.com conferma: 52W range $3,247.86–$5,595.46. Il 52W low è il floor assoluto tecnico. Solo in scenario di hike multipli e recessione conclamata. Target a 6–12 mesi nel bear case estremo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 08. SCENARIO TREE ═══ -->
+<section class="section">
+  <div class="sec-hd">
+    <span class="sec-num">08</span>
+    <h2 class="sec-title">Scenario <em>Tree · Probability Weighted</em></h2>
+  </div>
+
+  <div class="tree">
+    <div class="tn bear">
+      <div class="tn-tag r">Scenario A · Bearish Extension</div>
+      <div class="tn-title">NFP Forte + CTA Cascade + Break $3,958</div>
+      <div class="tn-prob r">32%</div>
+      <div class="tn-trigger">NFP &gt;150K · AHE &ge;+0.4% · Disoccupazione &le;4.2% · DXY rompe 102</div>
+      <div class="tn-rows">
+        <div class="tn-row"><span class="tn-k">Meccanismo</span><span class="tn-v">NFP forte → 2Y +10/12bp → DXY +0.8/1.2% → gold –$80/120. Sell-off attraversa $4,000 → GEX negativo amplifica → CTA liquida –$2/3B automaticamente → break $3,958.</span></div>
+        <div class="tn-row"><span class="tn-k">Path Prezzo</span><span class="tn-v r">$4,089 → short $4,175 → break $3,958 → $3,865 → $3,760 (4–6 sett.)</span></div>
+        <div class="tn-row"><span class="tn-k">Entry Short</span><span class="tn-v">Sell limit $4,175–4,210 PRIMA di NFP · oppure breakout short su close H4 &lt;$3,952</span></div>
+        <div class="tn-row"><span class="tn-k">T1 · T2</span><span class="tn-v r">$3,865 · $3,760</span></div>
+        <div class="tn-row"><span class="tn-k">Invalida</span><span class="tn-v">Close H4 sopra $4,232 con volume 2x media</span></div>
+        <div class="tn-row"><span class="tn-k">Risk Holiday</span><span class="tn-v"><strong>CHIUDERE TUTTO giovedì 3 lug prima di fine sessione. ZERO posizioni overnight.</strong></span></div>
+      </div>
+    </div>
+    <div class="tn">
+      <div class="tn-tag gd">Scenario B · Base Case — Range con Sell dalla Resistenza</div>
+      <div class="tn-title">NFP Neutro · Max Pain $4,050 · Vol Crush Bounce</div>
+      <div class="tn-prob gd">45%</div>
+      <div class="tn-trigger">NFP 80K–150K · AHE +0.2–0.3% · Disoccupazione 4.2–4.4%</div>
+      <div class="tn-rows">
+        <div class="tn-row"><span class="tn-k">Meccanismo</span><span class="tn-v">Dato in linea → vol crush immediato → vanna flow supporta bounce → gold ±$30/40. Max pain $4,050 agisce da attractor. GEX ricostruzione porta il prezzo verso il pin istituzionale.</span></div>
+        <div class="tn-row"><span class="tn-k">Path Prezzo</span><span class="tn-v gd">$4,089 → rally verso $4,175–4,210 (sell) → pullback $4,028–4,050 (max pain) → chiusura weekly $4,020–4,100</span></div>
+        <div class="tn-row"><span class="tn-k">Setup Primario</span><span class="tn-v">SHORT da VAH/VWAP $4,175–4,210 · stop $4,232 · TP $4,028/$4,000</span></div>
+        <div class="tn-row"><span class="tn-k">Setup Secondario</span><span class="tn-v">LONG da VAL $3,958–3,982 con CHoCH H4 · TP $4,085/$4,175</span></div>
+        <div class="tn-row"><span class="tn-k">Close Weekly</span><span class="tn-v gd">Stimato $4,020–$4,100 · attorno al max pain / POC</span></div>
+        <div class="tn-row"><span class="tn-k">Invalida Bear</span><span class="tn-v">Break $3,958 con volume · attiva scenario A</span></div>
+      </div>
+    </div>
+    <div class="tn">
+      <div class="tn-tag g">Scenario C · Bullish Reversal</div>
+      <div class="tn-title">NFP Shock + Short Squeeze + CHoCH Daily</div>
+      <div class="tn-prob g">23%</div>
+      <div class="tn-trigger">NFP &lt;60K · Disoccupazione &ge;4.5% · AHE &le;+0.1% · Hike Sep crolla &lt;30%</div>
+      <div class="tn-rows">
+        <div class="tn-row"><span class="tn-k">Meccanismo</span><span class="tn-v">NFP shock → 2Y –20bp → DXY –1.5/2% → gold +$120/200 in sessione → short squeeze massiccio → break $4,232 → CHoCH daily confermato → institutional FOMO buy.</span></div>
+        <div class="tn-row"><span class="tn-k">Path Prezzo</span><span class="tn-v g">$4,089 → break $4,232 con volume → $4,319 → $4,493 (settimane successive)</span></div>
+        <div class="tn-row"><span class="tn-k">Entry Long</span><span class="tn-v">Break confermato $4,232 su volume &gt;2x media · SOLO post-NFP dato</span></div>
+        <div class="tn-row"><span class="tn-k">T1 · T2</span><span class="tn-v g">$4,319 (yearly open) · $4,493 (weekly resistance key)</span></div>
+        <div class="tn-row"><span class="tn-k">CRITICAL</span><span class="tn-v"><strong>Holiday risk: CHIUDERE IL 100% prima di fine sessione giovedì 3 luglio. Size max 0.5% del capitale. Gap lunedì 7 lug non gestibile.</strong></span></div>
+        <div class="tn-row"><span class="tn-k">Invalida</span><span class="tn-v">Ritorno sotto $4,140 entro 4 ore dal break</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 09. TRADE MATRIX ═══ -->
+<section class="section">
+  <div class="sec-hd">
+    <span class="sec-num">09</span>
+    <h2 class="sec-title">Trade <em>Matrix · Operational Parameters</em></h2>
+  </div>
+
+  <div class="tmatrix">
+    <div class="tm">
+      <div class="tm-hd">
+        <div><div class="tm-rank">SETUP A · ALTA PROB · SCENARIO A+B</div>
+          <div class="tm-name">Short da VAH/VWAP/GEX Confluence</div></div>
+        <div class="tm-dir s">▼ SHORT</div>
+      </div>
+      <div class="tm-body">
+        <div class="tm-cell"><div class="tm-cell-lbl">Entry Zone</div><div class="tm-cell-val r">$4,175–$4,215</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">Stop Loss</div><div class="tm-cell-val">$4,238</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">R:R Max</div><div class="tm-cell-val gd">1:13</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">TP 1 (50%)</div><div class="tm-cell-val g">$4,028</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">TP 2 (30%)</div><div class="tm-cell-val g">$3,865</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">TP 3 (20%)</div><div class="tm-cell-val g">$3,760</div></div>
+      </div>
+      <div class="tm-ft"><strong>CONFLUENZA:</strong> VAH Volume Profile + VWAP weekly retest + GEX Call Wall + 52-week MA · Sell limit order · Conferma H4 bearish candela · <strong>Ridurre size 50% se posizione aperta sopra NFP</strong></div>
+    </div>
+    <div class="tm">
+      <div class="tm-hd">
+        <div><div class="tm-rank">SETUP B · DEMAND ZONE · SCENARIO B</div>
+          <div class="tm-name">Long da VAL + GEX Put Wall + CHoCH H4</div></div>
+        <div class="tm-dir l">▲ LONG</div>
+      </div>
+      <div class="tm-body">
+        <div class="tm-cell"><div class="tm-cell-lbl">Entry Zone</div><div class="tm-cell-val g">$3,958–$3,982</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">Stop Loss</div><div class="tm-cell-val">$3,924</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">R:R</div><div class="tm-cell-val gd">1:5</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">TP 1 (60%)</div><div class="tm-cell-val r">$4,085</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">TP 2 (30%)</div><div class="tm-cell-val r">$4,175</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">TP 3 (10%)</div><div class="tm-cell-val r">$4,210</div></div>
+      </div>
+      <div class="tm-ft"><strong>CONDIZIONE:</strong> CHoCH H4 confermato (HH+HL su H4) + delta cumulativo positivo (buyer aggressivi) + volume &gt;1.5x media · NON entrare in sessione NFP senza stop garantito</div>
+    </div>
+    <div class="tm">
+      <div class="tm-hd">
+        <div><div class="tm-rank">SETUP C · BREAKOUT · SCENARIO A ESTESO</div>
+          <div class="tm-name">CTA Cascade Short · Break VAL $3,958</div></div>
+        <div class="tm-dir s">▼ SHORT</div>
+      </div>
+      <div class="tm-body">
+        <div class="tm-cell"><div class="tm-cell-lbl">Entry</div><div class="tm-cell-val r">Close H4&lt;$3,952</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">Stop Loss</div><div class="tm-cell-val">$4,018</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">R:R</div><div class="tm-cell-val gd">1:8</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">TP 1</div><div class="tm-cell-val g">$3,865</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">TP 2</div><div class="tm-cell-val g">$3,760</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">Trigger</div><div class="tm-cell-val am">NFP&gt;150K</div></div>
+      </div>
+      <div class="tm-ft"><strong>CONDIZIONE:</strong> Close H4 confermato sotto $3,958 + volume &gt;2x media · LVN $3,995–4,010 accelera il move · <strong>CHIUDERE PRIMA FINE SESSIONE GIO 3 LUG · ZERO OVERNIGHT</strong></div>
+    </div>
+    <div class="tm">
+      <div class="tm-hd">
+        <div><div class="tm-rank">SETUP D · NFP SHOCK · SCENARIO C · BASSA PROB</div>
+          <div class="tm-name">CHoCH Daily Breakout · Short Squeeze</div></div>
+        <div class="tm-dir l">▲ LONG</div>
+      </div>
+      <div class="tm-body">
+        <div class="tm-cell"><div class="tm-cell-lbl">Entry</div><div class="tm-cell-val g">Break $4,238 vol</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">Stop Loss</div><div class="tm-cell-val">$4,152</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">R:R</div><div class="tm-cell-val gd">1:9</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">TP 1</div><div class="tm-cell-val r">$4,319</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">TP 2</div><div class="tm-cell-val r">$4,493</div></div>
+        <div class="tm-cell"><div class="tm-cell-lbl">Trigger</div><div class="tm-cell-val am">NFP&lt;60K</div></div>
+      </div>
+      <div class="tm-ft"><strong>⚠ CRITICO:</strong> Size max 0.5% capitale · CHIUDERE 100% prima fine sessione 3 lug · Gap apertura lunedì non gestibile · Prob. 23% · Volume break &gt;2x media obbligatorio</div>
+    </div>
+  </div>
+
+  <!-- RISK FRAMEWORK -->
+  <div style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:2px;color:var(--text-dk);text-transform:uppercase;padding:18px 0 8px;">Framework di Rischio Settimanale</div>
+  <div class="risk-grid">
+    <div class="risk-cell">
+      <div class="risk-cell-lbl">Max Size per Trade</div>
+      <div class="risk-cell-val r">1.0% capitale</div>
+      <div class="risk-cell-desc">Ridotto a 0.5% su Setup D (NFP shock). Settimana ad alta incertezza = size -30–40% vs norma.</div>
+    </div>
+    <div class="risk-cell">
+      <div class="risk-cell-lbl">Max Risk Totale Sett.</div>
+      <div class="risk-cell-val r">2.0% capitale</div>
+      <div class="risk-cell-desc">NFP + holiday = capital preservation week. Non cercare alpha aggressivo in questa configurazione.</div>
+    </div>
+    <div class="risk-cell">
+      <div class="risk-cell-lbl">Regola NFP Holiday</div>
+      <div class="risk-cell-val am">ZERO overnight</div>
+      <div class="risk-cell-desc">Nessuna posizione aperta dopo le 18:00 CET di giovedì 3 luglio. Gap lunedì 7 luglio = rischio non calcolabile.</div>
+    </div>
+    <div class="risk-cell">
+      <div class="risk-cell-lbl">Filtro di Regime</div>
+      <div class="risk-cell-val gd">$4,000 pivot</div>
+      <div class="risk-cell-desc">Sopra $4,000: vendi le resistenze. Sotto $4,000: segui il trend bearish. Non operare contro il regime.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 10. PRICE MAP ═══ -->
+<section class="section">
+  <div class="sec-hd">
+    <span class="sec-num">10</span>
+    <h2 class="sec-title">Mappa <em>Strutturale Completa</em></h2>
+  </div>
+
+  <div class="pmap">
+<span class="r">  ══════════════════════════════════════════════════</span>
+<span class="r">  $4,493–$4,540  ◄ RES WEEKLY KEY · Tripla confluenza</span>
+<span class="r">                    Bull Invalidation Level (Forex.com)</span>
+<span class="r">  ══════════════════════════════════════════════════</span>
+<span class="dk">         ↕  FVG / Imbalance non riempita</span>
+<span class="r">     $4,319      ◄ YEARLY OPEN · CHoCH Primario Avvenuto</span>
+<span class="dk">         ↕  Cluster stop-loss long $4,319–4,350</span>
+<span class="r">  ┌──────────────────────────────────────────────────┐</span>
+<span class="r">  │  $4,185–$4,210  ◄ VAH + VWAP + GEX CALL WALL   │ ← IN TEST</span>
+<span class="r">  │                    52W MA ~$4,195 · Tripla conf. │</span>
+<span class="r">  └──────────────────────────────────────────────────┘</span>
+<span class="dk">  ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─</span>
+<span class="gd">  ██████████████████████████████████████████████████</span>
+<span class="gd">  █  $4,089  ◄ POC SETTIMANALE · PREZZO ATTUALE    █</span>
+<span class="gd">  ██████████████████████████████████████████████████</span>
+<span class="dk">  ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─</span>
+<span class="gd">     $4,074–$4,112  ◄ HVN · Supporto intermedio · Forex.com</span>
+<span class="gd">     $4,050         ◄ MAX PAIN Luglio · Attractor GEX</span>
+<span class="am">  ══════════════════════════════════════════════════</span>
+<span class="am">     $4,000          ◄ GAMMA FLIP · Regime Boundary</span>
+<span class="am">  ══════════════════════════════════════════════════</span>
+<span class="dk">         ↕  LVN $3,995–4,010 → runway per move rapido</span>
+<span class="g">  ┌──────────────────────────────────────────────────┐</span>
+<span class="g">  │  $3,958–$3,982  ◄ VAL + GEX PUT WALL + DEMAND  │ ← KEY</span>
+<span class="g">  │                    CHoCH confermato · Low Sett.  │</span>
+<span class="g">  └──────────────────────────────────────────────────┘</span>
+<span class="dk">         ↕  Break → CTA cascade –$2/3B stima</span>
+<span class="g">     $3,865      ◄ T1 Bear · Demand strutturale</span>
+<span class="dk">         ↕</span>
+<span class="g">     $3,800      ◄ GEX Barrier Put secondaria</span>
+<span class="dk">         ↕</span>
+<span class="g">     $3,760      ◄ T2 Bear · Target estremo</span>
+<span class="dk">         ↕</span>
+<span class="g">     $3,500      ◄ Trendline HTF primaria</span>
+<span class="dk">         ↕</span>
+<span class="bl">     $3,247      ◄ 52-WEEK LOW · Floor assoluto</span>
+  </div>
+</section>
+
+<!-- ═══ 11. SINTESI ESECUTIVA ═══ -->
+<section class="section">
+  <div class="sec-hd">
+    <span class="sec-num">11</span>
+    <h2 class="sec-title">Sintesi <em>Esecutiva</em></h2>
+  </div>
+
+  <div class="bars">
+    <div class="bar-it">
+      <div class="bar-lbl">Macro Regime Score (Bearish per Gold)</div>
+      <div class="bar-track"><div class="bar-fill r" style="width:72%"></div></div>
+      <div class="bar-vals"><span class="bar-val">Reflazione Hawkish 45% prob.</span><span class="bar-val dk">PCE 4.1% · Warsh · Hike Sep 62%</span></div>
+    </div>
+    <div class="bar-it">
+      <div class="bar-lbl">Real Yield Headwind (Inversamente correlato)</div>
+      <div class="bar-track"><div class="bar-fill am" style="width:60%"></div></div>
+      <div class="bar-vals"><span class="bar-val">10Y 4.39% · TIPS ~+1.82%</span><span class="bar-val dk">In calo questa settimana — segnale positivo</span></div>
+    </div>
+    <div class="bar-it">
+      <div class="bar-lbl">COT Speculativo (Rischio liquidazione)</div>
+      <div class="bar-track"><div class="bar-fill am" style="width:78%"></div></div>
+      <div class="bar-vals"><span class="bar-val">78° percentile · +181K net long</span><span class="bar-val dk">Ma +7,527 WoW → contrarian bullish tattico</span></div>
+    </div>
+    <div class="bar-it">
+      <div class="bar-lbl">ETF Flow Pressure (Strutturalmente negativo)</div>
+      <div class="bar-track"><div class="bar-fill r" style="width:65%"></div></div>
+      <div class="bar-vals"><span class="bar-val">–50t H1 2026 net · ING bearish</span><span class="bar-val dk">Taper Tantrum 2.0 pattern in corso</span></div>
+    </div>
+    <div class="bar-it">
+      <div class="bar-lbl">Sovereign Demand Floor (Strutturalmente positivo)</div>
+      <div class="bar-track"><div class="bar-fill g" style="width:90%"></div></div>
+      <div class="bar-vals"><span class="bar-val">90% CB aumenterà riserve · 474t Q1</span><span class="bar-val dk">JPM stima 755t acquisti CB 2026</span></div>
+    </div>
+    <div class="bar-it">
+      <div class="bar-lbl">GEX / Options Risk (Amplificazione volatilità)</div>
+      <div class="bar-track"><div class="bar-fill r" style="width:68%"></div></div>
+      <div class="bar-vals"><span class="bar-val">GEX negativo · P/C 1.42 · RR –4.2%</span><span class="bar-val dk">Dealer amplifica · ogni move è più grande</span></div>
+    </div>
+    <div class="bar-it">
+      <div class="bar-lbl">Stagionalità (Giu–Lug storicamente debole)</div>
+      <div class="bar-track"><div class="bar-fill r" style="width:62%"></div></div>
+      <div class="bar-vals"><span class="bar-val">Periodo stagionalmente sfavorevole</span><span class="bar-val dk">Ago–Ott = finestra bull imminente</span></div>
+    </div>
+  </div>
+
+  <div class="bq" style="margin-top:22px;">
+    <p>Il gold è in un processo di trasferimento dagli speculatori levereggiati (ETF occidentali, futures) alle mani forti (banche centrali, fisico asiatico). Questo non è un processo ordinato — avviene attraverso cascate di liquidazione, short squeeze tattici, e infine un reset del posizionamento COT verso il basso. La settimana 30 giugno – 4 luglio non è la settimana del bottom strutturale. È una settimana di volatilità estrema artificiale — quarter-end mechanics, NFP ad alto impatto, holiday Friday con liquidità thin. L'operatore istituzionale ha una sola agenda: vendere le resistenze con precisione, non tenere posizioni overnight giovedì, e prepararsi per la finestra stagionale agosto–ottobre che storicamente coincide con il washout COT e l'accumulo soveregn.</p>
+    <cite>— GoatXAU · Institutional Research · 28 Giugno 2026 · Dati: Investing.com, TradingEconomics, CFTC, WGC, Forex.com, Discovery Alert, ING, FXStreet, SSGA, QuantPedia</cite>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="ft-brand">GOATXAU · INSTITUTIONAL RESEARCH · 2026</div>
+  <div class="ft-disc">Solo uso educativo e informativo. Non costituisce consulenza finanziaria ai sensi del D.Lgs. 58/1998. Trading in strumenti finanziari comporta rischio sostanziale di perdita del capitale. Dati basati su fonti pubblicamente disponibili al 28 giugno 2026: Investing.com, TradingEconomics, CFTC (Code 088691), World Gold Council, Forex.com/Michael Boutros, Discovery Alert, ING Research, FXStreet, SSGA, LiteFinance, TradingView. Past performance non è indicativa di risultati futuri. Effettua sempre ricerche indipendenti prima di operare. Le probabilità degli scenari sono stime soggettive, non previsioni certe.</div>
+</footer>
+
+</body>
+</html>
+HTMLEOF
+echo "V4 HTML — $(wc -l < /home/claude/goatxau-v4.html) lines · $(wc -c < /home/claude/goatxau-v4.html | tr -d ' ') bytes"
+Output
+
+V4 HTML — 1400 lines · 87356 bytes
+
